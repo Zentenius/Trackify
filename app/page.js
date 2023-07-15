@@ -223,7 +223,7 @@ function App() {
             </div>
             
           </section>
-          <section className='min-h-screen p-5' id='data'>
+          {token && ( <section className='min-h-screen p-5' id='data'>
                     <h1 className=' text-center font-bold mt-8 text-5xl  '> Stats for spotify</h1>
                     <div className='grid justify-center items-center mt-20'>
                     <div className="tabs tabs-boxed">
@@ -232,87 +232,165 @@ function App() {
                       <a className={`tab ${activeTypeTab === 3 ? 'tab-active' : ''}`} onClick={() => handleTabClick(3)}>Top Artists</a>
                     </div>
                     </div>
-                    <div className='grid justify-center items-center mt-8'>
+                    <div className='hidden md:block'>
+                    <div className='grid justify-center items-center mt-8 '>
                     <div className='bg-base-200 p-10 rounded-[30px]'>
-                    <div className="tabs">
-                      <a className={`tab tab-lifted  ${activeTimeTab === 1 ? 'tab-active' : ''}`} onClick={() => handleTimeTabClick(1)}>4 weeks</a> 
-                      <a className={`tab tab-lifted ${activeTimeTab === 2 ? 'tab-active' : ''}`} onClick={() => handleTimeTabClick(2)}>6 months</a> 
-                      <a className={`tab tab-lifted ${activeTimeTab === 3 ? 'tab-active' : ''}`} onClick={() => handleTimeTabClick(3)}>All</a>
-                    </div>
-                    <div className="overflow-x-auto">
-                    {activeTypeTab === 1 && (
-                    
-                        <table className="table">
-                          <thead>
-                            <tr>
-                              <th></th>
-                              <th>Name</th>
-                              <th>Artist</th>
-                              <th>Album</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {topTracks.map((track, index) => (
-                              <tr key={track.id}>
-                                <td>{index + 1}</td>
-                                <td>{track.name}</td>
-                                <td>{track.artists[0].name}</td>
-                                <td>{track.album.name}</td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      
-                    )}
-                    {activeTypeTab === 2 && (
-                    
-                        <table className="table">
-                          <thead>
-                            <tr>
-                              <th></th>
-                              <th>Genre</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {topGenres.map((genre, index) => (
-                              <tr key={index}>
-                                <td>{index + 1}</td>
-                                <td>{genre}</td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      
-                    )}
-                    {activeTypeTab === 3 && (
-                  
-                        <table className="table">
-                          <thead>
-                            <tr>
-                              <th></th>
-                              <th>Name</th>
-                              <th>Followers</th>
-                              <th>Popularity</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {topArtists.map((artist, index) => (
-                              <tr key={artist.id}>
-                                <td>{index + 1}</td>
-                                <td>{artist.name}</td>
-                                <td>{artist.followers.total}</td>
-                                <td>{artist.popularity}</td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                    
-                    )}
+                              <div className="tabs">
+                                <a className={`tab tab-lifted  ${activeTimeTab === 1 ? 'tab-active' : ''}`} onClick={() => handleTimeTabClick(1)}>4 weeks</a> 
+                                <a className={`tab tab-lifted ${activeTimeTab === 2 ? 'tab-active' : ''}`} onClick={() => handleTimeTabClick(2)}>6 months</a> 
+                                <a className={`tab tab-lifted ${activeTimeTab === 3 ? 'tab-active' : ''}`} onClick={() => handleTimeTabClick(3)}>All</a>
+                              </div>
+                              <div className="overflow-x-auto">
+                              {activeTypeTab === 1 && (
+                              
+                                  <table className="table">
+                                    <thead>
+                                      <tr>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th>Artist</th>
+                                        <th>Album</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {topTracks.map((track, index) => (
+                                        <tr key={track.id}>
+                                          <td>{index + 1}</td>
+                                          <td>{track.name}</td>
+                                          <td>{track.artists[0].name}</td>
+                                          <td>{track.album.name}</td>
+                                        </tr>
+                                      ))}
+                                    </tbody>
+                                  </table>
+                                
+                              )}
+                              {activeTypeTab === 2 && (
+                              
+                                  <table className="table">
+                                    <thead>
+                                      <tr>
+                                        <th></th>
+                                        <th>Genre</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {topGenres.map((genre, index) => (
+                                        <tr key={index}>
+                                          <td>{index + 1}</td>
+                                          <td>{genre}</td>
+                                        </tr>
+                                      ))}
+                                    </tbody>
+                                  </table>
+                                
+                              )}
+                              {activeTypeTab === 3 && (
+                            
+                                  <table className="table">
+                                    <thead>
+                                      <tr>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th>Followers</th>
+                                        <th>Popularity</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {topArtists.map((artist, index) => (
+                                        <tr key={artist.id}>
+                                          <td>{index + 1}</td>
+                                          <td>{artist.name}</td>
+                                          <td>{artist.followers.total}</td>
+                                          <td>{artist.popularity}</td>
+                                        </tr>
+                                      ))}
+                                    </tbody>
+                                  </table>
+                              
+                              )}
+                            </div>
+                            </div>
                         </div>
-                        </div>
                     </div>
+                    <div className='md:hidden'>
+                              <div className='grid justify-center items-center mt-2'>
+                              <div className="tabs tabs-boxed">
+                                <a className={`tab ${activeTimeTab === 1 ? 'tab-active' : ''}`} onClick={() => handleTimeTabClick(1)}>4 weeks</a> 
+                                <a className={`tab ${activeTimeTab === 2 ? 'tab-active' : ''}`} onClick={() => handleTimeTabClick(2)}>6 months</a> 
+                                <a className={`tab ${activeTimeTab === 3 ? 'tab-active' : ''}`} onClick={() => handleTimeTabClick(3)}>All</a>
+                              </div>
+                              </div>
+                              {activeTypeTab === 1 && (
+                                    <div className="grid grid-cols-1 gap-4 mt-5">
+                                      {topTracks.map((track, index) => (
+                                        <div key={track.id} className="bg-base-200 p-4 rounded-lg shadow">
+                                          <div className="flex items-center space-x-2 text-sm">
+                                            <div>
+                                              <a href="#" className="text-black font-bold hover:underline">
+                                                #{index + 1}
+                                              </a>
+                                              <div className="badge bg-[#6bd791] gap-2 p-4 mx-3 rounded-lg">
+                                                {track.name}
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div className="text-sm text-gray-700">{track.artists[0].name}</div>
+                                          <div className="text-sm text-gray-700">{track.album.name}</div>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  )}
 
-          </section>
+                                  {activeTypeTab === 2 && (
+                                    <div className="grid grid-cols-1 gap-4 mt-5">
+                                      {topGenres.map((genre, index) => (
+                                        <div key={index} className="bg-base-200 p-4 rounded-lg shadow">
+                                          <div className="flex items-center space-x-2 text-sm">
+                                            <div>
+                                              <a href="#" className="text-black font-bold hover:underline">
+                                                #{index + 1}
+                                              </a>
+                                              <div className="badge bg-[#6bd791] gap-2 p-4 mx-3 rounded-lg">
+                                                {genre}
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  )}
+
+                                  {activeTypeTab === 3 && (
+                                    <div className="grid grid-cols-1 gap-4 mt-5">
+                                      {topArtists.map((artist, index) => (
+                                        <div key={artist.id} className="bg-base-200 p-4 rounded-lg shadow">
+                                          <div className="flex items-center space-x-2 text-sm">
+                                            <div>
+                                              <a href="#" className="text-black font-bold hover:underline">
+                                                #{index + 1}
+                                              </a>
+                                              <div className="badge bg-[#6bd791] gap-2 p-4 mx-3 rounded-lg">
+                                                {artist.name}
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div className="text-sm text-gray-700">
+                                            Followers: {artist.followers.total}
+                                          </div>
+                                          <div className="text-sm text-gray-700">
+                                            Popularity: {artist.popularity}
+                                          </div>
+                                        </div>
+                                      ))}
+                                    </div>
+)}
+                              
+                              </div>
+                    
+                    
+
+          </section>)}
           {/*
           <header className="App-header">
               <h1>Spotify React</h1>
