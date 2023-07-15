@@ -9,7 +9,7 @@ import axios from 'axios';
 
 function App() {
   const CLIENT_ID = "8403372c67d44bd7b136e5ac17665703"
-  const REDIRECT_URI = "http://amari-trackify.vercel.app"
+  const REDIRECT_URI = "https://amari-trackify.vercel.app"
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE = "token"
 
@@ -30,7 +30,7 @@ function App() {
   const handleTimeTabClick = (tabIndex) => {
     setTimeActiveTab(tabIndex);
   };
-
+  "ssss"
 
  
   // const getToken = () => {
