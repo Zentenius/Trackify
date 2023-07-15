@@ -1,0 +1,15 @@
+  const getTopArtists = async () => {
+    try {
+      const response = await axios.get('https://api.spotify.com/v1/me/top/artists', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const topArtists = response.data.items;
+      setTopArtists(topArtists);
+    } catch (error) {
+      console.error('Error retrieving top artists:', error);
+      throw error;
+    }
+  };
